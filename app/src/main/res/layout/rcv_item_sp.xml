@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8sp"
+    android:layout_marginLeft="20sp"
+    android:layout_marginRight="20sp"
+    android:layout_marginBottom="20sp"
+    android:id="@+id/layout_item">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20sp">
+
+        <TextView
+            android:id="@+id/tv_sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="VGA Card LEADTEK nVidia Quadro P620 2GB GDDR5"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8sp"
+            android:layout_marginTop="20sp">
+
+            <TextView
+                android:id="@+id/tv_giasp"
+                android:background="@color/black"
+                android:padding="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4,300,000 VND"
+                android:textColor="@color/tv_red"
+                android:textSize="20sp"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

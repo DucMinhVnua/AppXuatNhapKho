@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Fragment1">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_edt_search"
+        android:id="@+id/edt_search"
+        android:padding="15sp"
+        android:layout_margin="20sp"
+        android:drawableLeft="@drawable/ic_search"
+        android:hint="Search hóa đơn"
+        android:drawablePadding="10sp"/>
+
+</FrameLayout>

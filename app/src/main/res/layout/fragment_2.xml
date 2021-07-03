@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Fragment1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm Sản Phẩm"
+            android:gravity="center"
+            android:padding="40sp"
+            android:textSize="30sp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20sp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên sản phẩm: "
+                android:textColor="@color/black"
+                android:textSize="19sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên sản phẩm"
+                android:id="@+id/edt_tensp"/>
+            <TextView
+                android:layout_marginTop="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giá sản phẩm: "
+                android:textColor="@color/black"
+                android:textSize="19sp"/>
+            <com.cottacush.android.currencyedittext.CurrencyEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Giá sản phẩm"
+                android:id="@+id/edt_gianhap"
+                android:inputType="number"/>
+            <TextView
+                android:layout_marginTop="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giá xuất kho: "
+                android:textColor="@color/black"
+                android:textSize="19sp"/>
+            <com.cottacush.android.currencyedittext.CurrencyEditText
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Giá xuất kho"
+                android:id="@+id/edt_giaxuat" />
+            <TextView
+                android:layout_marginTop="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Số lượng (mặc định): "
+                android:textColor="@color/black"
+                android:textSize="19sp"/>
+            <EditText
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="soluong"
+                android:text="0"
+                android:enabled="false"
+                android:id="@+id/edt_soluong" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_ThemSp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="Thêm sản phẩm"
+            android:layout_margin="20sp"
+            android:padding="20sp"/>
+    </LinearLayout>
+
+</RelativeLayout>
