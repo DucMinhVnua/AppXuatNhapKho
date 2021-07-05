@@ -51,8 +51,11 @@ public class MainActivity extends AppCompatActivity {
         // Tạo database
         db = new databaseSP(this, "SanPham.sqlite", null, 1);
 
-        // Tạo table
+        // Tạo table SanPham
         db.querydata("CREATE TABLE IF NOT EXISTS SanPham (Id INTEGER PRIMARY KEY AUTOINCREMENT, TenSp VARCHAR(200), GiaNhap VARCHAR(200), GiaXuat VARCHAR(200), SoLuong INTEGER, TenNhaCungCap VARCHAR(100), Sdt INTEGER, DiaChi VARCHAR(200))");
+
+        // Tạo table XuatKho
+        db.querydata("CREATE TABLE IF NOT EXISTS XuatKho (Id INTEGER PRIMARY KEY AUTOINCREMENT, TenSp VARCHAR(200), TenKhachHang VARCHAR(200), Sdt VARCHAR(20),  SoLuong INTEGER, NgayThang DATE)");
     }
 
     private void AnhXa () {

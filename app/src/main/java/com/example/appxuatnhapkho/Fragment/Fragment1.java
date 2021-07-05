@@ -1,16 +1,23 @@
 package com.example.appxuatnhapkho.Fragment;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.appxuatnhapkho.Adapter.AdapterSP;
 import com.example.appxuatnhapkho.Database.databaseSP;
@@ -19,6 +26,7 @@ import com.example.appxuatnhapkho.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class Fragment1 extends Fragment {
 
@@ -36,6 +44,7 @@ public class Fragment1 extends Fragment {
     private String tenSP;
     private String giaXuatSP;
     private String tien;
+    private int soLuong;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,7 +93,7 @@ public class Fragment1 extends Fragment {
 
     private void SPAdapter () {
         // Khởi tạo adapter
-        adapterSP = new AdapterSP(getContext(), mArrayListSP);
+        adapterSP = new AdapterSP(this, mArrayListSP);
 
         // Add adapter
         rcv.setAdapter(adapterSP);
@@ -104,11 +113,12 @@ public class Fragment1 extends Fragment {
             tenSP = cursor.getString(1);
             giaXuatSP = cursor.getString(3);
             tien = cursor.getString(2);
+            soLuong = cursor.getInt(4);
 
             System.out.println("tiền" + Float.parseFloat(tien));
             TongTienDB += Float.parseFloat(tien);
 
-            mArrayListSP.add(new ObjItemSP(Id, tenSP, currencyFormatter(tien) + " VND"));
+            mArrayListSP.add(new ObjItemSP(Id, tenSP, soLuong, currencyFormatter(tien) + " VND"));
         }
 
         tvTongTien.setText(currencyFormatter(String.valueOf(TongTienDB)) + " VND");
@@ -121,5 +131,31 @@ public class Fragment1 extends Fragment {
         return formatter.format(m);
     }
 
+    // custom dialog
+    public void CustomDialog(int id, String tenSp, int soLuong) {
+        Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custom_dialog_sp);
 
+        // ánh xạ
+        Button btnThoat = dialog.findViewById(R.id.btn_dialog_thoat);
+        TextView tvTenSP = dialog.findViewById(R.id.tv_dialog_tensp);
+        TextView tvSoLuong = dialog.findViewById(R.id.tv_dialog_soluong);
+
+        // set name SP
+        tvTenSP.setText(tenSp);
+
+        // set số lượng
+        tvSoLuong.setText(String.valueOf(soLuong));
+
+        // Xử lý sự kiện onclick
+        btnThoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
 }

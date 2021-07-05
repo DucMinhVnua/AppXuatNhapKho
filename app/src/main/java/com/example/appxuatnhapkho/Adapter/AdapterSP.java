@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appxuatnhapkho.Fragment.Fragment1;
 import com.example.appxuatnhapkho.Object.ObjItemSP;
 import com.example.appxuatnhapkho.R;
 
@@ -19,10 +21,10 @@ import java.util.List;
 
 public class AdapterSP extends RecyclerView.Adapter<AdapterSP.SanPhamViewHolder>{
 
-    Context mContext;
+    Fragment1 mContext;
     List<ObjItemSP> mList;
 
-    public AdapterSP(Context mContext, List<ObjItemSP> mList) {
+    public AdapterSP(Fragment1 mContext, List<ObjItemSP> mList) {
         this.mContext = mContext;
         this.mList = mList;
     }
@@ -47,7 +49,7 @@ public class AdapterSP extends RecyclerView.Adapter<AdapterSP.SanPhamViewHolder>
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(objItemSP.getId());
+                mContext.CustomDialog(objItemSP.getId(), objItemSP.getTenSp(), objItemSP.getSoLuong());
             }
         });
     }

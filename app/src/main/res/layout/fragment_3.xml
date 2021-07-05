@@ -1,19 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragment.Fragment1">
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_edt_search"
-        android:id="@+id/edt_search"
-        android:padding="15sp"
-        android:layout_margin="20sp"
-        android:drawableLeft="@drawable/ic_search"
-        android:hint="Search hóa đơn"
-        android:drawablePadding="10sp"/>
+        android:orientation="horizontal"
+        android:weightSum="10">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/edt_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:layout_weight="7"
+            android:background="@drawable/custom_edt_search"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="10sp"
+            android:padding="15sp"
+            android:hint="DD/MM/YYYY"/>
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:backgroundTint="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginRight="20sp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"/>
+
+</LinearLayout>

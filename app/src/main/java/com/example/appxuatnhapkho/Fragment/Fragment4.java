@@ -16,6 +16,11 @@ import com.example.appxuatnhapkho.Database.databaseSP;
 import com.example.appxuatnhapkho.Object.ObjItemSP;
 import com.example.appxuatnhapkho.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Fragment4 extends Fragment {
 
     // Database
@@ -30,9 +35,7 @@ public class Fragment4 extends Fragment {
 
     // variable function SelectData
     String tenSP, tenNhaCungCap, diaChi, tenSPTrung;
-    int soLuong, sDt;
-
-    // variable function UpdateData
+    int soLuong, sDt, tongSoLuong;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -133,11 +136,27 @@ public class Fragment4 extends Fragment {
 
     private void UpdateData () {
         try {
-            db.querydata("UPDATE SanPham SET TenSP = '"+valueTenSP+"', TenNhaCungCap = '"+valueTenNhaCungCap+"', Sdt = '"+valueSDT+"', DiaChi = '"+valueDiaChi+"' WHERE tenSP = '"+valueTenSP+"'");
+
+            // xử lý số lượng
+            tongSoLuong = Integer.parseInt(valueSoLuong) + soLuong;
+
+            // update
+            db.querydata("UPDATE SanPham SET TenSP = '"+valueTenSP+"', TenNhaCungCap = '"+valueTenNhaCungCap+"', Sdt = '"+valueSDT+"', DiaChi = '"+valueDiaChi+"', SoLuong = '"+tongSoLuong+"' WHERE tenSP = '"+valueTenSP+"'");
+
+            // thông báo
             Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+
+            // set string
+            edtTenSP.setText("");
+            edtTenNhaCungCap.setText("");
+            edtSoDienThoai.setText("");
+            edtDiaChi.setText("");
+            edtSoLuong.setText("");
+
         } catch (Exception e) {
             Toast.makeText(getContext(), (CharSequence) e, Toast.LENGTH_SHORT).show();
         }
 
     }
+
 }

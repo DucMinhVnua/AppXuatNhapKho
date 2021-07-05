@@ -109,6 +109,7 @@ public class Fragment2 extends Fragment {
                 break;
             }
         }
+
         if (flag == 0) {
             db.querydata("INSERT INTO SanPham VALUES (null, '"+tenSP+"', '"+giaNhap+"', '"+giaXuat+"', '"+soLuong+"', null, null, null)");
             Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
