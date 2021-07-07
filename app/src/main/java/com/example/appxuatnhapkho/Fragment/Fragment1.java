@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.appxuatnhapkho.Adapter.AdapterSP;
 import com.example.appxuatnhapkho.Database.databaseSP;
+import com.example.appxuatnhapkho.MainActivity;
 import com.example.appxuatnhapkho.Object.ObjItemSP;
 import com.example.appxuatnhapkho.R;
 
@@ -93,7 +94,7 @@ public class Fragment1 extends Fragment {
 
     private void SPAdapter () {
         // Khởi tạo adapter
-        adapterSP = new AdapterSP(this, mArrayListSP);
+        adapterSP = new AdapterSP((MainActivity) getActivity(),this, mArrayListSP);
 
         // Add adapter
         rcv.setAdapter(adapterSP);
@@ -131,31 +132,4 @@ public class Fragment1 extends Fragment {
         return formatter.format(m);
     }
 
-    // custom dialog
-    public void CustomDialog(int id, String tenSp, int soLuong) {
-        Dialog dialog = new Dialog(getActivity());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.custom_dialog_sp);
-
-        // ánh xạ
-        Button btnThoat = dialog.findViewById(R.id.btn_dialog_thoat);
-        TextView tvTenSP = dialog.findViewById(R.id.tv_dialog_tensp);
-        TextView tvSoLuong = dialog.findViewById(R.id.tv_dialog_soluong);
-
-        // set name SP
-        tvTenSP.setText(tenSp);
-
-        // set số lượng
-        tvSoLuong.setText(String.valueOf(soLuong));
-
-        // Xử lý sự kiện onclick
-        btnThoat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-    }
 }

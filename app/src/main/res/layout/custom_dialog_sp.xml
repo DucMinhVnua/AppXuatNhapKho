@@ -59,11 +59,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_btn_thoat"
         android:layout_below="@+id/layout_soluong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="20sp">
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp">
 
         <Button
             android:layout_marginTop="20sp"
@@ -78,5 +80,45 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layout_btn_xuatkho"
+        android:layout_below="@+id/layout_btn_thoat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp">
+
+        <Button
+            android:id="@+id/btn_dialog_xuatkho"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:text="Xuất kho"
+            android:padding="15sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/layout_btn_xuatkho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp">
+
+        <Button
+            android:id="@+id/btn_dialog_nhapkho"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:text="Nhập kho"
+            android:padding="15sp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

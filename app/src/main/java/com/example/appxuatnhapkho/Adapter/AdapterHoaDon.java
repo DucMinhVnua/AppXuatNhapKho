@@ -48,7 +48,10 @@ public class AdapterHoaDon extends RecyclerView.Adapter<AdapterHoaDon.HoaDonView
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        if (mList != null) {
+            return mList.size();
+        }
+        return 0;
     }
 
     public class HoaDonViewHolder extends RecyclerView.ViewHolder {

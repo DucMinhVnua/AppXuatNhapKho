@@ -1,5 +1,6 @@
 package com.example.appxuatnhapkho.Fragment;
 
+import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -189,9 +191,18 @@ public class Fragment3 extends Fragment {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                hideSoftKeyboard(getActivity());
+
                 valueSearch = dateSearch.getText().toString();
 
-                if (!TextUtils.isEmpty(valueSearch)) {
+                System.out.println(valueSearch.length());
+
+                if (TextUtils.isEmpty(valueSearch) || valueSearch.equals("DD/MM/YYYY")) {
+                    mArrayList.clear();
+                    adapterHoaDon.notifyDataSetChanged();
+                    Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin tìm kiếm", Toast.LENGTH_SHORT).show();
+                } else {
                     System.out.println(valueSearch);
 
                     // find value search
@@ -204,18 +215,31 @@ public class Fragment3 extends Fragment {
     private void FindValueSearch () {
 
         mArrayList.clear();
+        try {
+            Cursor cursor = db.getData("SELECT * FROM XuatKho WHERE NgayThang = '"+valueSearch+"'");
+            while (cursor.moveToNext()) {
+                Id = cursor.getInt(0);
+                soLuong = cursor.getInt(4);
+                tenSP = cursor.getString(1);
+                tenKH = cursor.getString(2);
+                sdt = cursor.getString(3);
+                ngayThang = cursor.getString(5);
 
-        Cursor cursor = db.getData("SELECT * FROM XuatKho WHERE NgayThang = '"+valueSearch+"'");
-        while (cursor.moveToNext()) {
-            Id = cursor.getInt(0);
-            soLuong = cursor.getInt(4);
-            tenSP = cursor.getString(1);
-            tenKH = cursor.getString(2);
-            sdt = cursor.getString(3);
-            ngayThang = cursor.getString(5);
+                mArrayList.add(new ObjItemHoaDon(Id, soLuong, tenSP, tenKH,ngayThang , sdt ));
+                adapterHoaDon.notifyDataSetChanged();
+            }
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "e", Toast.LENGTH_SHORT).show();
+        }
 
-            mArrayList.add(new ObjItemHoaDon(Id, soLuong, tenSP, tenKH,ngayThang , sdt ));
-            adapterHoaDon.notifyDataSetChanged();
+    }
+
+
+    // hide Keyboard
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if(inputMethodManager.isAcceptingText()){
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
         }
     }
 }

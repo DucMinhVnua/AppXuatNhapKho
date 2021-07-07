@@ -5,11 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appxuatnhapkho.Adapter.AdapterFragment;
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // SetUpViewPager
         SetUpViewPager();
+
     }
 
     private void DatabaseSP () {
@@ -90,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void SetUpViewPager () {
+
+        // khởi tạo adapter fragment
         adapterFragment = new AdapterFragment(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapterFragment);
 
@@ -126,4 +136,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    // custom dialog
+    public void CustomDialog(int id, String tenSp, int soLuong) {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custom_dialog_sp);
+
+        // ánh xạ
+        Button btnThoat = dialog.findViewById(R.id.btn_dialog_thoat);
+        TextView tvTenSP = dialog.findViewById(R.id.tv_dialog_tensp);
+        TextView tvSoLuong = dialog.findViewById(R.id.tv_dialog_soluong);
+        Button btnNhapKho = dialog.findViewById(R.id.btn_dialog_nhapkho);
+        Button btnXuatKho = dialog.findViewById(R.id.btn_dialog_xuatkho);
+
+        btnXuatKho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(4);
+                dialog.dismiss();
+            }
+        });
+
+        btnNhapKho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(3);
+                dialog.dismiss();
+            }
+        });
+
+
+        // set name SP
+        tvTenSP.setText(tenSp);
+
+        // set số lượng
+        tvSoLuong.setText(String.valueOf(soLuong));
+
+        // Xử lý sự kiện onclick
+        btnThoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
 }

@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appxuatnhapkho.Fragment.Fragment1;
+import com.example.appxuatnhapkho.MainActivity;
 import com.example.appxuatnhapkho.Object.ObjItemSP;
 import com.example.appxuatnhapkho.R;
 
@@ -21,10 +22,12 @@ import java.util.List;
 
 public class AdapterSP extends RecyclerView.Adapter<AdapterSP.SanPhamViewHolder>{
 
+    MainActivity mainActivity;
     Fragment1 mContext;
     List<ObjItemSP> mList;
 
-    public AdapterSP(Fragment1 mContext, List<ObjItemSP> mList) {
+    public AdapterSP(MainActivity mainActivity, Fragment1 mContext, List<ObjItemSP> mList) {
+        this.mainActivity = mainActivity;
         this.mContext = mContext;
         this.mList = mList;
     }
@@ -49,7 +52,7 @@ public class AdapterSP extends RecyclerView.Adapter<AdapterSP.SanPhamViewHolder>
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.CustomDialog(objItemSP.getId(), objItemSP.getTenSp(), objItemSP.getSoLuong());
+                mainActivity.CustomDialog(objItemSP.getId(), objItemSP.getTenSp(), objItemSP.getSoLuong());
             }
         });
     }
