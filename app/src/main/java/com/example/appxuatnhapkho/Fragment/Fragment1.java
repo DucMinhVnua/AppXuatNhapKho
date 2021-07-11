@@ -122,6 +122,7 @@ public class Fragment1 extends Fragment {
             mArrayListSP.add(new ObjItemSP(Id, tenSP, soLuong, currencyFormatter(tien) + " VND"));
         }
 
+        // set tổng tiền mỗi sp
         tvTongTien.setText(currencyFormatter(String.valueOf(TongTienDB)) + " VND");
     }
 

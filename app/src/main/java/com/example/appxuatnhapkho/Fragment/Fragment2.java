@@ -71,6 +71,8 @@ public class Fragment2 extends Fragment {
         btnThemSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // lấy value
                 String giaXuat = String.valueOf(edtGiaXuat.getNumericValue());
                 String tenSP = edtTenSp.getText().toString().trim();
                 String giaNhap = String.valueOf(edtGiaNhap.getNumericValue());
